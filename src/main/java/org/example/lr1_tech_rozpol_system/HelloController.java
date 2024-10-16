@@ -8,7 +8,7 @@ public class HelloController {
     @FXML
     private TextField fieldA,fieldB,fieldN,fieldTHR;
     @FXML
-    private Label resultLab, timeLab;
+    private Label resultLab, timeLab, proc;
 
     private Function function=new Function();
     private IntegralCalculate calculateIntegral=new IntegralCalculate();
@@ -23,8 +23,9 @@ public class HelloController {
             long startT=System.currentTimeMillis();
             double res=calculateIntegral.calculateIntegral(a,b,n,thr,function);
             long endT=System.currentTimeMillis();
+            proc.setText("Кількість ядер: "+Runtime.getRuntime().availableProcessors());
             resultLab.setText("Відповідь: " + res);
-            timeLab.setText("Час: " + (endT - startT) + " сек");
+            timeLab.setText("Час: " + (endT - startT) + " мс");
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
